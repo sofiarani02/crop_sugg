@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }        
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            padding: 14px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar-menu {
+            flex-direction: column;
+            background-color: #333;
+            z-index: 1; 
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 250px;
+        }
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            display: block;
+        }
+        .navbar-menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 14px 20px;
+            color: white;
+            font-size: 18px;
+            border: none;
+            background-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+        .navbar-menu.show {
+            display: flex;
+        }
+        
+        .container {
+            padding: 20px;
+            background-image: url('/static/a1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 86vh;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            padding-top: 60px;
+        }
+        p {
+            color: #484848;
+        }
+        .features{
+            padding-top: 10px;
+            text-align: center;
+            color: rgb(1, 28, 1);
+            padding-bottom: 60px;
+        }
+        .content {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            width: 300px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-button {
+            background-color: #4CAF50; /* Green shade */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card-button:hover {
+            background-color: #45a049; /* Darker green shade on hover */
+        }
+        .footer {
+            background-color: #333; /* Same color as navbar */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/" class="navbar-brand">AgriGrow</a>
+        <div class="navbar-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="navbar-menu" id="menu">
+            <a href="/crop_prediction">Crop Prediction</a>
+            <a href="/fertilizer_suggestion">Fertilizer Suggestion</a>
+            <a href="/government-schemes" class="navbar-brand">Government Schemes</a>
+            <a href="#">Disease Identification</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to AgriGrow</h1>
+        <p><b>AgriGrow is your digital companion in agriculture, offering a suite of innovative features designed <br />to streamline farming practices and maximize yields. With a focus on data-driven solutions and <br />sustainable practices, we're committed to helping farmers thrive in an ever-changing landscape</b></p>
+    </div>
+    <div class="features">
+        <h2>Features</h2>
+        <div class="content">
+            <div class="card">
+                <!-- <img src="crop.jpeg" alt="Crop"> -->
+                <div class="card-content">
+                    <h2>Crop Suggestion</h2>
+                    <p>Learn about crop cultivation techniques, pest management, and harvesting methods.</p>
+                    <a href="/crop_prediction" class="card-button">View</a>
+                </div>
+            </div>
+            <div class="card">
+                <!-- <img src="fertilizer.jpeg" alt="Fertilizer"> -->
+                <div class="card-content">
+                    <h2>Fertilizer management</h2>
+                    <p>Discover the right fertilizers for different crops and how to apply them effectively.</p>
+                    <a href="/fertilizer_suggestion" class="card-button">View</a>
+                </div>
+            </div>
+            <div class="card">
+                <!-- <img src="schemes.jpeg" alt="Government Schemes"> -->
+                <div class="card-content">
+                    <h2>Government Schemes</h2>
+                    <p>Explore government schemes aimed at promoting agriculture and supporting farmers.</p>
+                    <a href="/government-schemes" class="card-button">View</a>
+                </div>
+            </div>   
+            <div class="card">
+                <!-- <img src="disease.jpeg" alt="Disease Identification"> -->
+                <div class="card-content">
+                    <h2>Disease Identification</h2>
+                    <p>Identify common plant diseases and learn about their prevention and treatment methods.</p>
+                    <a href="/disease_identification" class="card-button">View</a>
+                </div>
+            </div>   
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            © 2024 AgriGrow. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle menu visibility
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+
+        // Function to close menu when clicking outside
+        window.addEventListener('click', function(event) {
+            var menu = document.getElementById("menu");
+            var toggleButton = document.querySelector('.navbar-toggle');
+
+            // Check if the clicked element is not within the menu or the toggle button
+            if (!menu.contains(event.target) && !toggleButton.contains(event.target)) {
+                menu.classList.remove("show"); // Close the menu
+            }
+        });
+    </script>
+</body>
+</html>
